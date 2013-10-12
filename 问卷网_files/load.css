@@ -1,0 +1,42 @@
+/*º”‘ÿ—˘ Ω*/
+.loadMack{
+position:fixed;
+*position:absolute;
+top:0;
+left:0;
+z-index:3800;
+opacity:0.1; 
+widht:100%;
+*filter:alpha(opacity=10);
+filter:alpha(opacity=10);
+-moz-opacity:0.1;
+background:#ffffff;
+width:100%;
+}
+.loadCon
+{
+position:fixed;
+*position:absolute;
+padding:10px 20px 10px;
+font-size:14px;
+font-weight:bold;
+color:#efefef;
+z-index:3801;
+box-shadow:0 0 5px rgba(0, 0, 0, 0.8);
+/*background:url(../images/loading_wb.gif) center center no-repeat #000000;*/
+background:#000000;
+*filter:alpha(opacity=70);
+filter:alpha(opacity=70);
+-moz-opacity:0.7;
+opacity:0.7; 
+border-radius:10px;
+}	
+
+#canvasimg{
+	display:none;
+	width:598px;
+	height:535px;
+	border:1px #CCCCCC solid;
+	background:#FFF;
+}
+

@@ -1,0 +1,170 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0078)http://widget.renren.com/plugin/followbutton?page_id=601710740&color=0&model=0 -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>人人关注</title>
+<style type="text/css">
+* { margin: 0; padding: 0; }
+body { font-size: 12px; font-family: Tahoma, Verdana, STHeiTi, simsun, sans-serif; }
+em { font-style: normal; }
+.att-button span { height: 23px; display: inline-block; float: left; line-height: 23px; }
+.att-button span.n { padding-right: 5px; position: relative; left: 2px; }
+.att-button span.f { width: 76px; overflow: hidden; text-indent: -999em; margin-right: 5px; }
+.att-button.blue span.f { background-image: url(http://widget.renren.com/img/add-color1.png); background-position: 0 0; background-repeat: no-repeat; }
+.att-button.blue span.f.ok { background-image: url(http://widget.renren.com/img/del-color1.png); background-position: 0 0; background-repeat: no-repeat; }
+.att-button.blue span.f.ok:hover, .att-button.blue span.f.ok.hover { background-image: url(http://widget.renren.com/img/followtitle1.png); background-repeat: no-repeat; }
+.att-button.white span.f { background-image: url(http://widget.renren.com/img/add-color0.png); background-position: 0 0; background-repeat: no-repeat; }
+.att-button.white span.f.ok { background: url(http://widget.renren.com/img/del-color0.png) no-repeat 0 0; }
+.att-button.white span.f.ok:hover, .att-button.white span.f.ok.hover { background-image: url(http://widget.renren.com/img/followtitle0.png); background-repeat: no-repeat; }
+.count { text-decoration: none; }
+.count span { background-repeat: no-repeat; padding-left: 3px; height: 23px; display: block; float: left; line-height: 23px; width: 49px; height: 23px; font-size: 13px; vertical-align: middle; text-decoration: none; margin-left: -3px; text-align: center; }
+.count.white span.number { background-image: url(http://widget.renren.com/img/count0.png); background-position: 0 0; color: black; background-repeat: no-repeat; }
+.count.blue span.number { background-image: url(http://widget.renren.com/img/count1.png); background-position: 0 0; color: white; background-repeat: no-repeat; }
+</style>
+<style type="text/css"></style></head>
+<body>
+<div>
+<em>
+<a class="att-button white" id="follow" href="javascript:;" onclick="doFans()" title="点击关注，成为大软坊的粉丝"><span id="sp1" class="f"></span></a>
+</em><em></em></div>
+<input type="hidden" id="isFans" value="false">
+<input type="hidden" id="pid" value="601710740">
+<input type="hidden" id="userId" value="">
+<input type="hidden" id="model" value="0">
+<input type="hidden" id="color" value="0">
+<input type="hidden" id="pageName" value="大软坊">
+<script type="text/javascript">
+(function() {
+var Controller = function() {
+}
+Controller.prototype.getEle = function(string) {
+return document.getElementById(string);
+}
+Controller.prototype.parseJSON = function(string) {
+if(!string || typeof string !== "string") {
+return null;
+}
+if(window.JSON && window.JSON.parse) {
+return window.JSON.parse(string);
+}
+return (new Function("return " + string))();
+}
+Controller.prototype.getTransport = function() {
+if(window.ActiveXObject) {
+try {
+return new ActiveXObject('Msxml2.XMLHTTP');
+} catch(e) {
+return new ActiveXObject('Microsoft.XMLHTTP');
+}
+} else {
+return new XMLHttpRequest();
+}
+}
+Controller.prototype.ajax = function(option) {
+var transport = this.getTransport();
+transport.open(option.method, option.url, true);
+transport.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+transport.onreadystatechange = function() {
+if(transport.readyState == 4) {
+if( typeof transport.status == 'undefined' || transport.status == 0 || (transport.status >= 200 && transport.status < 300)) {
+if(option.callBack) {
+option.callBack(transport);
+}
+}
+}
+};
+transport.send(option.data);
+return false;
+}
+var $ = new Controller().getEle, parseJSON = new Controller().parseJSON;
+var uid, pid = null, model, color;
+function readystatuschange(r) {
+var r = parseJSON(r.responseText);
+if(r && r.error == 'not_login') {
+$('userId').value = 0;
+doFans();
+} else if(r && r.error == 'fans_error') {
+alert(r.error_description);
+} else {
+$('isFans').value = r.isFans;
+if(r.isFans == true) {//加关注成功，或取消关注失败
+var bn = $('follow');
+bn.title = '点击取消关注';
+var sp = $('sp1');
+sp.className = 'f ok';
+} else {//取消关注，或加关注失败
+var name = $('pageName').value;
+var bn = $('follow');
+bn.title = '点击关注，成为' + name + '的粉丝';
+$('sp1').className = 'f';
+}
+if(model == '1') {
+$('number').innerHTML = r.count;
+}
+}
+}
+function addFans() {
+new Controller().ajax({
+method : "POST",
+url : "http://widget.renren.com/plugin/followbutton/addfans",
+data : 'page_id=' + pid,
+callBack : function(r) {
+//console.log(r.responseText);
+readystatuschange(r);
+window.doFans.running = false;
+}
+});
+}
+function delFans() {
+new Controller().ajax({
+method : "POST",
+url : "http://widget.renren.com/plugin/followbutton/delfans",
+data : 'page_id=' + pid,
+callBack : function(r) {
+//console.log(r.responseText);
+readystatuschange(r);
+window.doFans.running = false;
+}
+})
+return false;
+}
+function login() {
+var width = Math.round((window.screen.width - 500) / 2);
+var height = Math.round((window.screen.height - 400) / 2);
+window.open('http://graph.renren.com/login?display=popup&origin=81901&redirect_uri=http%3A%2F%2Fwidget.renren.com%2Fplugin%2Ffollowbutton%2Flogin?page_id=' + pid, 'fl', 'width=500,height=400,left=' + width + ',top=' + height + ',resizable=yes');
+}
+function doFans() {
+uid = $('userId').value;
+if(!uid || uid == '' || uid <= 0) {
+login();
+return false;
+}
+pid = $('pid').value;
+if(doFans.running || pid == "") {
+return false;
+}
+doFans.running = true;
+var isFans = $('isFans').value;
+model = $('model').value;
+color = $('color').value;
+if(isFans == 'true') {
+delFans();
+} else {
+addFans();
+}
+return false;
+}
+function loginCallBack(r) {
+if(r && r.uid > 0) {
+$('userId').value = r.uid;
+doFans();
+}
+}
+//bind globel
+window.loginCallBack = loginCallBack;
+window.doFans = doFans;
+})();
+</script>
+
+
+</body></html>
