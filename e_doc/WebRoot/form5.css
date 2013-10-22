@@ -1,0 +1,291 @@
+/* remove codrops styles and reset the whole thing */
+
+
+/** fonts used for the icons **/ 
+@font-face {
+    font-family: 'FontomasCustomRegular';
+    src: url('fonts/fontomas-webfont.eot');
+    src: url('fonts/fontomas-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/fontomas-webfont.woff') format('woff'),
+         url('fonts/fontomas-webfont.ttf') format('truetype'),
+         url('fonts/fontomas-webfont.svg#FontomasCustomRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'FranchiseRegular';
+    src: url('fonts/franchise-bold-webfont.eot');
+    src: url('fonts/franchise-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/franchise-bold-webfont.woff') format('woff'),
+         url('fonts/franchise-bold-webfont.ttf') format('truetype'),
+         url('fonts/franchise-bold-webfont.svg#FranchiseRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+a{
+	color: #333;
+	text-decoration: none;
+}
+a.hiddenanchor{
+	display: none;
+}
+
+#wrapper {
+	width: 400px;
+	margin: 0 auto;
+	position: relative;	
+}
+.form {
+	padding: 5px;
+	overflow: hidden;
+}
+form {
+	background:#fefefe;
+	border: 1px solid #C3D4DB;
+	border-top:1px;
+    border-radius:5px;
+    box-shadow:rgba(0,0,0,0.15) 0 0 1px;
+    color:#444;
+    font:normal 12px/14px Arial, Helvetica, Sans-serif;
+    margin:0 auto 30px;
+    position: relative;
+}
+form > div {
+	padding: 10px 25px;
+	background: #fefefe;
+}
+form > div:nth-child(2) {
+	padding-top: 50px;
+	border-radius: 5px 5px 0 0;
+}
+form .button {
+	border-bottom: 1px solid #dde0e8;
+}
+
+form > div:last-child {
+	background: none repeat scroll 0 0 #EFF4F6;
+  border-top: 1px solid #FFFFFF;
+  height: 32px;
+  padding: 22px 26px;
+  line-height: 32px;
+  border-radius: 0 0 5px 5px;
+}
+
+#wrapper label{
+	color: #444;
+	position: relative;
+	font-size: 14px;
+	font-weight: bold;
+}
+/**** advanced input styling ****/
+/* placeholder */
+::-webkit-input-placeholder  { 
+	color: #bbb; 
+	font-style: italic;
+}
+input:-moz-placeholder,
+textarea:-moz-placeholder{ 
+	color: #bbb;
+	font-style: italic;
+} 
+input {
+  outline: none;
+}
+
+/* all the input except submit and checkbox */
+#wrapper input:not([type="checkbox"]){
+	background:#EAE7E7;
+	padding: 10px 5px 10px 32px;	
+	-webkit-appearance: textfield;
+	-webkit-box-sizing: content-box;
+	  -moz-box-sizing : content-box;
+	       box-sizing : content-box;
+  text-shadow: 0 1px 1px #ffffff;
+  margin-top: 4px;
+	border-radius: 3px;
+	box-shadow: 0 1px 0 #fff, 0 -2px 5px rgba(0,0,0,0.08) inset;
+	-webkit-transition: all 0.5s ease;
+	-moz-transition: all 0.5s ease;
+	-ms-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+	border: 1px solid #c8c8c8;
+	color: #777;
+	font: 13px Helvetica, Arial, sans-serif;
+	width: 90%;	        
+}
+#wrapper input:not([type="checkbox"]):active,
+#wrapper input:not([type="checkbox"]):focus{
+	box-shadow: 0 0 2px #ed1c24 inset;
+	background-color: #fff;
+	border: 1px solid #ed1c24;
+} 
+
+/** the magic icon trick ! **/
+[data-icon]:after {
+    content: attr(data-icon);
+    font-family: 'FontomasCustomRegular';
+    color: #444;
+    position: absolute;
+    left: 10px;
+    top: 33px;
+		width: 30px;
+		font-weight: normal;
+}
+
+/*styling both submit buttons */
+#wrapper .button input{
+	background: rgb(254,231,154);
+	background: -moz-linear-gradient(top,  rgba(254,231,154,1) 0%, rgba(254,193,81,1) 100%);
+	background: -webkit-linear-gradient(top,  rgba(254,231,154,1) 0%,rgba(254,193,81,1) 100%);
+	background: -o-linear-gradient(top,  rgba(254,231,154,1) 0%,rgba(254,193,81,1) 100%);
+	background: -ms-linear-gradient(top,  rgba(254,231,154,1) 0%,rgba(254,193,81,1) 100%);
+	background: linear-gradient(top,  rgba(254,231,154,1) 0%,rgba(254,193,81,1) 100%);
+	border-radius: 3px;
+	box-shadow: 0 1px 0 rgba(255,255,255,0.8) inset;
+	border: 1px solid #D69E31;
+	color: #85592e;
+	cursor: pointer;
+	font: bold 15px Helvetica, Arial, sans-serif;
+	height: 20px;
+	width: 100px;
+	
+	
+	
+	text-shadow: 0 1px 0 rgba(255,255,255,0.5);
+		
+}
+#wrapper .button input:hover{
+	background: rgb(254,193,81);
+	background: -moz-linear-gradient(top,  rgba(254,193,81,1) 0%, rgba(254,231,154,1) 100%);
+	background: -webkit-linear-gradient(top,  rgba(254,193,81,1) 0%,rgba(254,231,154,1) 100%);
+	background: -o-linear-gradient(top,  rgba(254,193,81,1) 0%,rgba(254,231,154,1) 100%);
+	background: -ms-linear-gradient(top,  rgba(254,193,81,1) 0%,rgba(254,231,154,1) 100%);
+	background: linear-gradient(top,  rgba(254,193,81,1) 0%,rgba(254,231,154,1) 100%);
+}
+#wrapper .button input:active,
+#wrapper .button input:focus{
+	position: relative;
+	top: 3px;
+	text-shadow: none;
+	box-shadow: 0 1px 0 rgba(255, 255, 255, .3) inset;
+	border: 1px solid #D69E31;
+}
+.login.button,
+.signin.button{
+	text-align: center;
+	margin: 0 auto; 
+}
+
+
+form > h1 {
+	display: inline;
+}
+form > h1 span {
+	position: absolute;
+	display: inline-block;
+	right: -29px;
+	box-shadow: 0px 0px 10px rgba(0,0,0,0.2), inset 0px 5px 30px rgba(255,255,255,0.2);
+	text-align: center;
+	text-transform: uppercase;
+	top: 18px;
+	background: #d93131;
+	width: 90px;
+	padding: 3px 10px;
+	-webkit-transform: rotate(45deg);
+	-moz-transform: rotate(45deg);
+	-o-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	color: #fff;
+	font-weight: 900;
+}
+form > h1::before {
+	content: "";
+	width: 0;
+	height: 0;
+	position: absolute;
+	top: -22px;
+	right: 55px;
+	z-index: -1;
+	border: 17px solid;
+	border-color: transparent transparent #662121 transparent;
+}
+form > h1::after {
+	content: "";
+	width: 0;
+	height: 0;
+	position: absolute;
+	top: 70px;
+	z-index: -1;
+	right: -10px;
+	border: 17px solid;
+	border-color: #662121 transparent transparent transparent;
+}
+
+.change_link {
+	text-align: left;
+	vertial-align: middle;
+	font-size: 15px;
+	position: relative;
+}
+
+.change_link a {
+	width: 200px;
+	display: block;
+	height: 32px;
+	line-height: 32px;
+	background: #FEC151 ;
+	position: absolute;
+	right: -6px;
+	top: 22px;
+	text-align: center;
+	-webkit-transition: all 0.4s linear;
+	-moz-transition: all 0.4s  linear;
+	-o-transition: all 0.4s linear;
+	-ms-transition: all 0.4s  linear;
+	transition: all 0.4s  linear;
+	color: #85592E;
+	font-weight: bold;
+	font-size: 14px;
+	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+.change_link a::before {
+	border-color: #b58E31 transparent transparent;
+  border-style: solid;
+  border-width: 17px;
+  content: "";
+  height: 0;
+  position: absolute;
+  right: -10px;
+  top: 24px;
+  width: 0;
+  z-index: -1;
+}
+.change_link a::after {
+	border: 16px solid #FEC151 ;
+	border-left-color: #EFF4F6;
+  content: "";
+  height: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+}
+.change_link a:hover {
+	color: rgba(255, 255,255,0.8);
+	background: #AF3605;
+} 
+.change_link a:hover::before {
+	border-top-color: #76290A;
+}
+.change_link a:hover::after {
+	border-color: #AF3605 #AF3605 #AF3605 #EFF4F6;
+}
+
+/** Styling both forms **/
+#register, 
+#login{
+	position: absolute;
+	top: 0px;
+	width: 100%;
+}
